@@ -23,22 +23,29 @@ namespace UnitBrains.Player
             ///////////////////////////////////////
             // Homework 1.3 (1st block, 3rd module)
             //
-
-            if (GetTemperature() >= overheatTemperature)
-            {
-                    return;
-            }
-            
-            IncreaseTemperature();
             
             int r = GetTemperature();
-            
-            for (int i = 0; i < r; i++)
+
+            if (r >= overheatTemperature)
+
             {
-                var projectile = CreateProjectile(forTarget);
-                AddProjectileToList(projectile, intoList);
+
+                return;
+
             }
-            
+
+            IncreaseTemperature();
+
+            for (int i = 0; i <= r; i++)
+
+            {
+
+                var projectile = CreateProjectile(forTarget);
+
+                AddProjectileToList(projectile, intoList);
+
+            }
+
         }
             
      
@@ -64,12 +71,10 @@ namespace UnitBrains.Player
                     Target = target;
                 }
             }
-            while (result.Count > 1)
-            {
-                result.RemoveAt(result.Count - 1);
-                result.Clear();
-                result.Add(Target);
-            }
+            result.Clear();
+
+            if (maxDistance < float.MaxValue) result.Add(Target);
+
             return result;
         }
 
